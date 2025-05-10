@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import { Sparkles } from "lucide-react";
 
 type NavItem = {
   name: string;
@@ -19,22 +20,19 @@ export function Navigation({
   setIsHovered,
 }: NavigationProps) {
   return (
-    <header className="bg-black text-white">
-      
-
-      {/* Main navigation */}
-      <nav className="py-4 px-4 sticky top-0 z-50 bg-black/95 backdrop-blur-sm border-b border-yellow-600/20">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
-          {/* Logo con nuevo estilo */}
-          <div className="flex items-center mb-4 md:mb-0">
-            <h1 className="text-[2.1rem] font-normal tracking-[0.3em] uppercase">
-              <span className="text-yellow-500 font-light">LUXURY</span>
-              <span className="text-white font-light"> LIMOS</span>
+    <header className="bg-black text-gray-100">
+      <nav className="py-4 px-4 sticky top-0 z-50 bg-gradient-to-b from-black to-gray-900/95 backdrop-blur-sm border-b border-amber-500/20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+          {/* Logo premium */}
+          <div className="flex items-center mb-4 md:mb-0 group">
+            <Sparkles className="h-6 w-6 text-amber-400 mr-2 group-hover:rotate-12 transition-transform" />
+            <h1 className="text-3xl font-light tracking-widest uppercase">
+              <span className="text-amber-400">LUXURY</span>
+              <span className="text-white"> LIMOS</span>
             </h1>
           </div>
 
-          {/* Resto del código permanece igual */}
-          <div className="flex space-x-1 md:space-x-4">
+          <div className="flex space-x-1 md:space-x-6">
             {navItems.map((item) => (
               <motion.div
                 key={item.id}
@@ -45,8 +43,8 @@ export function Navigation({
                 <Link to={item.id === "Our Fleet" ? "/fleet" : item.id.toLowerCase()}>
                   <Button
                     variant="ghost"
-                    className={`rounded-none px-3 py-2 text-white hover:bg-transparent hover:text-yellow-500 transition-colors ${
-                      isHovered === item.id ? "text-yellow-500" : ""
+                    className={`rounded-none px-4 py-2 text-gray-300 hover:bg-transparent hover:text-amber-400 transition-all duration-300 ${
+                      isHovered === item.id ? "text-amber-400" : ""
                     }`}
                   >
                     {item.name}
@@ -56,7 +54,7 @@ export function Navigation({
                 {isHovered === item.id && (
                   <motion.div
                     layoutId="navUnderline"
-                    className="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-500"
+                    className="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{
@@ -69,7 +67,7 @@ export function Navigation({
               </motion.div>
             ))}
 
-            <Button className="ml-2 bg-yellow-600 hover:bg-yellow-700 text-black font-medium">
+            <Button className="ml-4 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-medium transition-all duration-300 shadow-lg hover:shadow-amber-500/30">
               BOOK NOW
             </Button>
           </div>

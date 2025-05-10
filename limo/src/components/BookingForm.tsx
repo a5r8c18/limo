@@ -1,6 +1,8 @@
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { Sparkles } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface FormData {
   name: string;
@@ -24,126 +26,64 @@ export function BookingForm({
   submitted,
   handleChange,
   handleSubmit,
+  className
 }: BookingFormProps) {
   return (
-    <section className="py-20 px-4 bg-black">
+    <section className={cn("py-16 px-4 bg-gradient-to-b from-black to-gray-900", className)}>
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-          <span className="text-yellow-500">Book</span> Your Limo
-        </h2>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wider mb-4">
+            <span className="text-white">Book</span> <span className="text-amber-400">Your Limo</span>
+          </h2>
+          <div className="w-24 h-1 bg-amber-500 mx-auto"></div>
+        </div>
 
         {submitted ? (
-          <Card className="bg-black border-black">
+          <Card className="bg-gradient-to-b from-gray-900 to-black border border-amber-500/30">
             <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold text-yellow-500 mb-4">
+              <div className="flex justify-center mb-6">
+                <Sparkles className="h-12 w-12 text-amber-400" />
+              </div>
+              <h3 className="text-2xl font-bold text-amber-400 mb-4">
                 Thank You!
               </h3>
-              <p className="text-lg">
+              <p className="text-gray-300">
                 Your booking request has been received. Our team will contact
                 you shortly to confirm your reservation.
               </p>
             </CardContent>
           </Card>
         ) : (
-          <Card className="bg-gray-800 border-gray-700">
+          <Card className="bg-gradient-to-b from-gray-900 to-black border border-gray-800">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block mb-2 text-sm font-medium"
-                  >
-                    Full Name
-                  </label>
-                  <Input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="bg-gray-700 border-gray-600 text-white"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium"
-                  >
-                    Email
-                  </label>
-                  <Input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="bg-gray-700 border-gray-600 text-white"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="date"
-                      className="block mb-2 text-sm font-medium"
-                    >
-                      Date
+                {[
+                  { id: "name", label: "Full Name", type: "text" },
+                  { id: "email", label: "Email", type: "email" },
+                  { id: "date", label: "Date", type: "date" },
+                  { id: "time", label: "Time", type: "time" },
+                  { id: "passengers", label: "Number of Passengers", type: "number", min: "1" }
+                ].map((field) => (
+                  <div key={field.id}>
+                    <label htmlFor={field.id} className="block mb-2 text-sm font-medium text-gray-300">
+                      {field.label}
                     </label>
                     <Input
-                      type="date"
-                      id="date"
-                      name="date"
-                      value={formData.date}
+                      type={field.type}
+                      id={field.id}
+                      name={field.id}
+                      value={formData[field.id as keyof FormData]}
                       onChange={handleChange}
                       required
-                      className="bg-gray-700 border-gray-600 text-white"
+                      min={field.min}
+                      className="bg-gray-800 border-gray-700 text-white focus:border-amber-400 focus:ring-amber-400"
                     />
                   </div>
-
-                  <div>
-                    <label
-                      htmlFor="time"
-                      className="block mb-2 text-sm font-medium"
-                    >
-                      Time
-                    </label>
-                    <Input
-                      type="time"
-                      id="time"
-                      name="time"
-                      value={formData.time}
-                      onChange={handleChange}
-                      required
-                      className="bg-gray-700 border-gray-600 text-white"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="passengers"
-                    className="block mb-2 text-sm font-medium"
-                  >
-                    Number of Passengers
-                  </label>
-                  <Input
-                    type="number"
-                    id="passengers"
-                    name="passengers"
-                    min="1"
-                    value={formData.passengers}
-                    onChange={handleChange}
-                    required
-                    className="bg-gray-700 border-gray-600 text-white"
-                  />
-                </div>
+                ))}
 
                 <Button
                   type="submit"
-                  className="w-full bg-yellow-600 hover:bg-yellow-700 text-black font-bold py-6"
+                  className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-bold py-6 text-lg transition-all duration-300"
                 >
                   Submit Booking Request
                 </Button>
