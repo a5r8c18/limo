@@ -1,9 +1,14 @@
 import { Card, CardContent } from "./ui/card";
 import { Phone, Mail, MapPin } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export function ContactSection() {
+interface ContactSectionProps {
+  className?: string;
+}
+
+export function ContactSection({ className }: ContactSectionProps) {
   return (
-    <section className="py-20 px-4">
+    <section className={cn("py-20 px-4", className)}>
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
           Contact <span className="text-yellow-500">Us</span>

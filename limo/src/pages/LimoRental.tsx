@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Clock, Phone, Mail, ChevronRight, Star } from "lucide-react";
+import { Clock, Phone, Mail, ChevronRight, Star, Sparkles } from "lucide-react";
 import { Navigation } from "../components/Navigation";
 import { VideoBanner } from "../components/VideoBanner";
 import { BookingForm } from "../components/BookingForm";
@@ -17,10 +17,9 @@ export default function LimoRental() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const mercedesprinter = '/images/fleet/Mercedes Sprinter.jpeg'
-  const cadillacescalade = '/images/fleet/cadillacescalade.jpeg'
-  const lincolnstretch = '/images/fleet/lincolnstretch.jpeg'
-
+  const mercedesprinter = '/images/fleet/Mercedes Sprinter.jpeg';
+  const cadillacescalade = '/images/fleet/cadillacescalade.jpeg';
+  const lincolnstretch = '/images/fleet/lincolnstretch.jpeg';
 
   const navItems = [
     { name: "Home", id: "home" },
@@ -34,22 +33,22 @@ export default function LimoRental() {
     {
       title: "Airport Transfers",
       description: "Reliable luxury transportation to/from all major airports",
-      icon: "✈️"
+      icon: <Sparkles className="h-10 w-10 text-amber-400" />
     },
     {
       title: "Corporate Events",
       description: "Professional transportation for business meetings and events",
-      icon: "💼"
+      icon: <Sparkles className="h-10 w-10 text-amber-400" />
     },
     {
       title: "Weddings",
       description: "Elegant wedding transportation for your special day",
-      icon: "💍"
+      icon: <Sparkles className="h-10 w-10 text-amber-400" />
     },
     {
       title: "Night Out",
       description: "Safe and stylish rides for your evening events",
-      icon: "🌃"
+      icon: <Sparkles className="h-10 w-10 text-amber-400" />
     }
   ];
 
@@ -92,21 +91,21 @@ export default function LimoRental() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-gray-100">
       {/* Top Header */}
-      <div className="bg-yellow-600 text-black py-3 px-4">
+      <div className="bg-gradient-to-r from-amber-700 to-amber-500 text-black py-3 px-4 border-b border-amber-400/30">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm md:text-base">
           <div className="flex items-center mb-2 md:mb-0">
-            <Clock className="h-5 w-5 mr-2" />
+            <Clock className="h-5 w-5 mr-2 text-black" />
             <span className="font-medium">24/7 Luxury Transportation Service</span>
           </div>
           <div className="flex items-center space-x-6">
             <div className="flex items-center">
-              <Phone className="h-5 w-5 mr-2" />
+              <Phone className="h-5 w-5 mr-2 text-black" />
               <span className="font-semibold">(555) 123-4567</span>
             </div>
             <div className="flex items-center">
-              <Mail className="h-5 w-5 mr-2" />
+              <Mail className="h-5 w-5 mr-2 text-black" />
               <span className="font-semibold">bookings@luxurylimos.com</span>
             </div>
           </div>
@@ -122,43 +121,51 @@ export default function LimoRental() {
       <VideoBanner />
 
       {/* Quick Booking Form */}
-      <section className="bg-gray-900 py-12 px-4">
+      <section className="py-16 px-4 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-black p-8 rounded-lg shadow-xl border border-yellow-600/30">
-            <h2 className="text-3xl font-bold mb-6 text-center text-yellow-500">
-              RESERVE YOUR LUXURY RIDE
+          <div className="bg-black p-8 rounded-lg shadow-2xl border border-amber-500/20">
+            <h2 className="text-3xl font-bold mb-6 text-center text-amber-400">
+              <span className="text-white">RESERVE YOUR</span> LUXURY RIDE
             </h2>
             <BookingForm
               formData={formData}
               submitted={submitted}
               handleChange={handleChange}
               handleSubmit={handleSubmit}
+              className="border-amber-500/30"
             />
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-16 px-4 bg-black">
+      <section className="py-20 px-4 bg-black">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-            OUR <span className="text-yellow-500">PREMIUM</span> SERVICES
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">
+              <span className="text-white">Our</span> <span className="text-amber-400">Premium</span> Services
+            </h2>
+            <div className="w-24 h-1 bg-amber-500 mx-auto mt-4"></div>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <div 
                 key={index} 
-                className="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-yellow-500 transition-colors group"
+                className="bg-gradient-to-b from-gray-900 to-black p-8 rounded-lg border border-gray-800 hover:border-amber-500 transition-all duration-300 group hover:shadow-lg hover:shadow-amber-500/10"
               >
-                <div className="text-4xl mb-4 text-yellow-500">{service.icon}</div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-yellow-500 transition-colors">
+                <div className="flex justify-center mb-6">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-center text-white group-hover:text-amber-400 transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-gray-300 mb-4">{service.description}</p>
-                <button className="flex items-center text-yellow-500 font-medium mt-4">
-                  Learn more <ChevronRight className="h-4 w-4 ml-1" />
-                </button>
+                <p className="text-gray-400 mb-6 text-center">{service.description}</p>
+                <div className="flex justify-center">
+                  <button className="flex items-center text-amber-400 font-medium group-hover:text-white transition-colors">
+                    Learn more <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
@@ -166,18 +173,19 @@ export default function LimoRental() {
       </section>
 
       {/* Fleet Preview Section */}
-      <section className="py-16 px-4 bg-black">
+      <section className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              OUR <span className="text-yellow-500">LUXURY</span> FLEET
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">
+              <span className="text-white">Our</span> <span className="text-amber-400">Luxury</span> Fleet
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               Explore our premium collection of vehicles for every occasion
             </p>
+            <div className="w-24 h-1 bg-amber-500 mx-auto mt-6"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {[
               {
                 name: "Mercedes Sprinter",
@@ -200,19 +208,24 @@ export default function LimoRental() {
             ].map((vehicle, index) => (
               <div key={index} className="relative group overflow-hidden rounded-lg">
                 <div className="aspect-w-16 aspect-h-9">
-                  <img src={vehicle.image} alt={vehicle.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <img 
+                    src={vehicle.image} 
+                    alt={vehicle.name} 
+                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" 
+                  />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-8">
                   <h3 className="text-2xl font-bold text-white">{vehicle.name}</h3>
-                  <p className="text-yellow-500 mb-1">{vehicle.type}</p>
+                  <p className="text-amber-400 mb-1 font-medium">{vehicle.type}</p>
                   <p className="text-gray-300">{vehicle.capacity}</p>
+                  <div className="absolute inset-0 border border-transparent group-hover:border-amber-400/50 transition-all duration-300"></div>
                 </div>
               </div>
             ))}
           </div>
           
           <div className="text-center">
-            <button className="bg-yellow-600 hover:bg-yellow-700 text-black font-bold py-3 px-8 rounded-md text-lg transition-colors">
+            <button className="bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-bold py-4 px-10 rounded-sm text-lg transition-all duration-300 shadow-lg hover:shadow-amber-500/30">
               VIEW FULL FLEET
             </button>
           </div>
@@ -220,22 +233,29 @@ export default function LimoRental() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 px-4 bg-black">
+      <section className="py-20 px-4 bg-black">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-            CLIENT <span className="text-yellow-500">TESTIMONIALS</span>
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">
+              <span className="text-white">Client</span> <span className="text-amber-400">Testimonials</span>
+            </h2>
+            <div className="w-24 h-1 bg-amber-500 mx-auto mt-6"></div>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gray-900 p-8 rounded-lg border border-gray-800">
-                <div className="flex mb-4">
+              <div key={index} className="bg-gradient-to-b from-gray-900 to-black p-8 rounded-lg border border-gray-800 hover:border-amber-500/50 transition-all duration-300 group">
+                <div className="flex justify-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-500 fill-yellow-500" />
+                    <Star key={i} className="h-5 w-5 text-amber-400 fill-amber-400 mx-1" />
                   ))}
                 </div>
-                <p className="text-gray-300 italic mb-6">"{testimonial.quote}"</p>
-                <p className="font-bold text-yellow-500">— {testimonial.author}</p>
+                <p className="text-gray-300 italic text-center mb-6 relative">
+                  <span className="absolute top-0 left-0 text-amber-400 text-4xl opacity-20">"</span>
+                  {testimonial.quote}
+                  <span className="absolute bottom-0 right-0 text-amber-400 text-4xl opacity-20">"</span>
+                </p>
+                <p className="font-bold text-amber-400 text-center">— {testimonial.author}</p>
               </div>
             ))}
           </div>
@@ -243,27 +263,27 @@ export default function LimoRental() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-yellow-600 text-black">
+      <section className="py-24 px-4 bg-gradient-to-r from-amber-700 to-amber-500 text-black">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            READY TO EXPERIENCE LUXURY TRANSPORTATION?
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase tracking-wider">
+            Ready to experience luxury transportation?
           </h2>
-          <p className="text-xl mb-8">
+          <p className="text-xl mb-10 font-medium">
             Book your ride today and travel in style with our premium service
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-black hover:bg-gray-900 text-white font-bold py-4 px-8 rounded-md text-lg transition-colors">
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <button className="bg-black hover:bg-gray-900 text-white font-bold py-4 px-10 rounded-sm text-lg transition-all duration-300 border border-transparent hover:border-amber-400">
               CALL NOW <Phone className="h-5 w-5 inline ml-2" />
             </button>
-            <button className="bg-white hover:bg-gray-100 text-black font-bold py-4 px-8 rounded-md text-lg transition-colors">
+            <button className="bg-white hover:bg-gray-100 text-black font-bold py-4 px-10 rounded-sm text-lg transition-all duration-300 border border-transparent hover:border-black">
               ONLINE BOOKING
             </button>
           </div>
         </div>
       </section>
 
-      <ContactSection />
-      <Footer />
+      <ContactSection className="bg-black border-t border-gray-800" />
+      <Footer className="bg-gray-900 text-gray-400 border-t border-gray-800" />
     </div>
   );
 }
