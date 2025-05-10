@@ -15,6 +15,7 @@ interface BookingFormProps {
   submitted: boolean;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.FormEvent) => void;
+  compact?: boolean;
 }
 
 export function BookingForm({

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-
+import { Link } from "react-router-dom";
 
 type NavItem = {
   name: string;
@@ -42,14 +42,16 @@ export function Navigation({
                 onHoverEnd={() => setIsHovered(null)}
                 className="relative"
               >
-                <Button
-                  variant="ghost"
-                  className={`rounded-none px-3 py-2 text-white hover:bg-transparent hover:text-yellow-500 transition-colors ${
-                    isHovered === item.id ? "text-yellow-500" : ""
-                  }`}
-                >
-                  {item.name}
-                </Button>
+                <Link to={item.id === "Our Fleet" ? "/fleet" : item.id.toLowerCase()}>
+                  <Button
+                    variant="ghost"
+                    className={`rounded-none px-3 py-2 text-white hover:bg-transparent hover:text-yellow-500 transition-colors ${
+                      isHovered === item.id ? "text-yellow-500" : ""
+                    }`}
+                  >
+                    {item.name}
+                  </Button>
+                </Link>
 
                 {isHovered === item.id && (
                   <motion.div
