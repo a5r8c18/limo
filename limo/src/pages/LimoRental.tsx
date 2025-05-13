@@ -5,6 +5,8 @@ import { VideoBanner } from "../components/VideoBanner";
 import { BookingForm } from "../components/BookingForm";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Button } from "../components/ui/button";
 
 export default function LimoRental() {
   const [isHovered, setIsHovered] = useState<string | null>(null);
@@ -91,22 +93,22 @@ export default function LimoRental() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-gray-100">
-      {/* Top Header */}
-      <div className="bg-gradient-to-r from-amber-700 to-amber-500 text-black py-3 px-4 border-b border-amber-400/30">
+    <div className="min-h-screen bg-black text-gray-100 font-serif">
+      {/* Top Header - Estilo retro con tipografía vintage */}
+      <div className="bg-gradient-to-r from-amber-700 to-amber-500 text-black py-3 px-4 border-b border-amber-400/30 font-mono">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm md:text-base">
           <div className="flex items-center mb-2 md:mb-0">
             <Clock className="h-5 w-5 mr-2 text-black" />
-            <span className="font-medium">24/7 Luxury Transportation Service</span>
+            <span className="font-medium tracking-wider">24/7 LUXURY TRANSPORTATION</span>
           </div>
           <div className="flex items-center space-x-6">
             <div className="flex items-center">
               <Phone className="h-5 w-5 mr-2 text-black" />
-              <span className="font-semibold">(555) 123-4567</span>
+              <span className="font-semibold tracking-tight">(555) 123-4567</span>
             </div>
             <div className="flex items-center">
               <Mail className="h-5 w-5 mr-2 text-black" />
-              <span className="font-semibold">bookings@luxurylimos.com</span>
+              <span className="font-semibold tracking-tight">bookings@luxurylimos.com</span>
             </div>
           </div>
         </div>
@@ -120,29 +122,33 @@ export default function LimoRental() {
 
       <VideoBanner />
 
-      {/* Quick Booking Form */}
-      <section className="py-16 px-4 bg-gradient-to-b from-black to-gray-900">
+      {/* Quick Booking Form - Usando Card de shadcn con estilo vintage */}
+      <section className="py-16 px-4 bg-black bg-opacity-90 bg-[url('https://www.transparenttextures.com/patterns/black-paper.png')]">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-black p-8 rounded-lg shadow-2xl border border-amber-500/20">
-            <h2 className="text-3xl font-bold mb-6 text-center text-amber-400">
-              <span className="text-white">RESERVE YOUR</span> LUXURY RIDE
-            </h2>
-            <BookingForm
-              formData={formData}
-              submitted={submitted}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-              className="border-amber-500/30"
-            />
-          </div>
+          <Card className="bg-black p-8 border-4 border-amber-500 shadow-xl">
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold mb-6 text-center text-amber-400 font-display tracking-wider">
+                <span className="text-white">RESERVE YOUR</span> LUXURY RIDE
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <BookingForm
+                formData={formData}
+                submitted={submitted}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                className="border-amber-500/30"
+              />
+            </CardContent>
+          </Card>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 px-4 bg-black">
+      {/* Services Section - Usando Card de shadcn con estilo vintage */}
+      <section className="py-20 px-4 bg-black bg-[url('https://www.transparenttextures.com/patterns/dark-geometric.png')]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider font-display">
               <span className="text-white">Our</span> <span className="text-amber-400">Premium</span> Services
             </h2>
             <div className="w-24 h-1 bg-amber-500 mx-auto mt-4"></div>
@@ -150,42 +156,45 @@ export default function LimoRental() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <div 
+              <Card 
                 key={index} 
-                className="bg-gradient-to-b from-gray-900 to-black p-8 rounded-lg border border-gray-800 hover:border-amber-500 transition-all duration-300 group hover:shadow-lg hover:shadow-amber-500/10"
+                className="bg-black p-8 rounded-lg border-2 border-gray-800 hover:border-amber-500 transition-all duration-300 group hover:shadow-lg hover:shadow-amber-500/10 transform hover:-translate-y-1"
+                style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/black-linen.png')" }}
               >
-                <div className="flex justify-center mb-6">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-4 text-center text-white group-hover:text-amber-400 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-gray-400 mb-6 text-center">{service.description}</p>
-                <div className="flex justify-center">
-                  <button className="flex items-center text-amber-400 font-medium group-hover:text-white transition-colors">
-                    Learn more <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </div>
+                <CardContent className="flex flex-col items-center text-center space-y-4">
+                  <div className="flex justify-center mb-6">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-white group-hover:text-amber-400 transition-colors font-display">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-400 italic">{service.description}</p>
+                  <div className="flex justify-center">
+                    <Button variant="link" className="text-amber-400 font-medium group-hover:text-white transition-colors border-b border-amber-400 pb-1">
+                      Learn more <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Fleet Preview Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
+      {/* Fleet Preview Section - Estilo vintage con polaroids */}
+      <section className="py-20 px-4 bg-black bg-opacity-90 bg-[url('https://www.transparenttextures.com/patterns/black-thread-light.png')]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider font-display">
               <span className="text-white">Our</span> <span className="text-amber-400">Luxury</span> Fleet
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto italic">
               Explore our premium collection of vehicles for every occasion
             </p>
             <div className="w-24 h-1 bg-amber-500 mx-auto mt-6"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
             {[
               {
                 name: "Mercedes Sprinter",
@@ -206,37 +215,38 @@ export default function LimoRental() {
                 image: lincolnstretch
               }
             ].map((vehicle, index) => (
-              <div key={index} className="relative group overflow-hidden rounded-lg">
-                <div className="aspect-w-16 aspect-h-9">
+              <div key={index} className="relative group">
+                <div className="aspect-w-16 aspect-h-9 bg-white p-4 shadow-2xl transform rotate-1 hover:rotate-0 transition-all duration-500">
                   <img 
                     src={vehicle.image} 
                     alt={vehicle.name} 
-                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" 
+                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 border-4 border-white" 
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-8">
-                  <h3 className="text-2xl font-bold text-white">{vehicle.name}</h3>
-                  <p className="text-amber-400 mb-1 font-medium">{vehicle.type}</p>
-                  <p className="text-gray-300">{vehicle.capacity}</p>
-                  <div className="absolute inset-0 border border-transparent group-hover:border-amber-400/50 transition-all duration-300"></div>
-                </div>
+                <Card className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-5/6 bg-black p-4 border-2 border-amber-400 shadow-lg">
+                  <CardContent className="text-center">
+                    <h3 className="text-xl font-bold text-white font-display">{vehicle.name}</h3>
+                    <p className="text-amber-400 text-sm">{vehicle.type}</p>
+                    <p className="text-gray-300 text-xs italic">{vehicle.capacity}</p>
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
           
           <div className="text-center">
-            <button className="bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-bold py-4 px-10 rounded-sm text-lg transition-all duration-300 shadow-lg hover:shadow-amber-500/30">
+            <Button className="bg-amber-500 hover:bg-amber-400 text-black font-bold py-4 px-10 rounded-none text-lg transition-all duration-300 border-2 border-black hover:border-amber-500 shadow-lg transform hover:scale-105">
               VIEW FULL FLEET
-            </button>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 px-4 bg-black">
+      {/* Testimonials - Usando Card de shadcn con estilo vintage */}
+      <section className="py-20 px-4 bg-black bg-opacity-90 bg-[url('https://www.transparenttextures.com/patterns/dark-denim-3.png')]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider font-display">
               <span className="text-white">Client</span> <span className="text-amber-400">Testimonials</span>
             </h2>
             <div className="w-24 h-1 bg-amber-500 mx-auto mt-6"></div>
@@ -244,46 +254,48 @@ export default function LimoRental() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gradient-to-b from-gray-900 to-black p-8 rounded-lg border border-gray-800 hover:border-amber-500/50 transition-all duration-300 group">
-                <div className="flex justify-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-amber-400 fill-amber-400 mx-1" />
-                  ))}
-                </div>
-                <p className="text-gray-300 italic text-center mb-6 relative">
-                  <span className="absolute top-0 left-0 text-amber-400 text-4xl opacity-20">"</span>
-                  {testimonial.quote}
-                  <span className="absolute bottom-0 right-0 text-amber-400 text-4xl opacity-20">"</span>
-                </p>
-                <p className="font-bold text-amber-400 text-center">— {testimonial.author}</p>
-              </div>
+              <Card key={index} className="bg-black p-8 border-l-4 border-amber-500 hover:border-amber-400 transition-all duration-300 group transform hover:scale-105">
+                <CardContent className="text-center">
+                  <div className="flex justify-center mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 text-amber-400 fill-amber-400 mx-1" />
+                    ))}
+                  </div>
+                  <p className="text-gray-300 italic mb-6 relative px-4">
+                    <span className="absolute top-0 left-0 text-amber-400 text-4xl opacity-20">"</span>
+                    {testimonial.quote}
+                    <span className="absolute bottom-0 right-0 text-amber-400 text-4xl opacity-20">"</span>
+                  </p>
+                  <p className="font-bold text-amber-400 border-t border-gray-800 pt-4">— {testimonial.author}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 px-4 bg-gradient-to-r from-amber-700 to-amber-500 text-black">
+      {/* CTA Section - Estilo cartel neón vintage */}
+      <section className="py-24 px-4 bg-amber-600 text-black bg-[url('https://www.transparenttextures.com/patterns/cardboard-flat.png')]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase tracking-wider">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase tracking-wider font-display neon-text">
             Ready to experience luxury transportation?
           </h2>
-          <p className="text-xl mb-10 font-medium">
+          <p className="text-xl mb-10 font-medium italic">
             Book your ride today and travel in style with our premium service
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <button className="bg-black hover:bg-gray-900 text-white font-bold py-4 px-10 rounded-sm text-lg transition-all duration-300 border border-transparent hover:border-amber-400">
+            <Button className="bg-black hover:bg-gray-900 text-white font-bold py-4 px-10 rounded-none text-lg transition-all duration-300 border-2 border-white hover:border-amber-400 shadow-lg">
               CALL NOW <Phone className="h-5 w-5 inline ml-2" />
-            </button>
-            <button className="bg-white hover:bg-gray-100 text-black font-bold py-4 px-10 rounded-sm text-lg transition-all duration-300 border border-transparent hover:border-black">
+            </Button>
+            <Button variant="secondary" className="bg-white hover:bg-gray-100 text-black font-bold py-4 px-10 rounded-none text-lg transition-all duration-300 border-2 border-black hover:border-amber-500 shadow-lg">
               ONLINE BOOKING
-            </button>
+            </Button>
           </div>
         </div>
       </section>
 
       <ContactSection className="bg-black border-t border-gray-800" />
       <Footer className="bg-gray-900 text-gray-400 border-t border-gray-800" />
-    </div>
+      </div>
   );
 }
