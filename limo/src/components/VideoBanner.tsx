@@ -2,15 +2,31 @@ import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
 export function VideoBanner() {
+  // Enlace de YouTube (reemplaza VIDEO_ID con el ID real del video)
+  const youtubeVideoId = "vOdCXtU9W7M"; // Ejemplo: ID del video de YouTube
+  const youtubeEmbedUrl = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&loop=1&playlist=${youtubeVideoId}&controls=0&showinfo=0&rel=0`;
+
   return (
     <div className="relative h-[80vh] overflow-hidden">
+      {/* Video de YouTube como fondo */}
+      <div className="absolute inset-0 z-0">
+        <iframe
+          src={youtubeEmbedUrl}
+          className="w-full h-full object-cover"
+          title="YouTube Video Background"
+          allow="autoplay; loop"
+          allowFullScreen
+          loading="lazy"
+        ></iframe>
+      </div>
+
       {/* Overlay con degradado y textura vintage */}
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10 opacity-90"></div>
-      
+
       {/* Fondo con textura vintage */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center"
-        style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/black-thread-light.png')" }}
+      <div
+        className="absolute inset-0 flex items-center justify-center"
+        style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/black-thread-light.png')", opacity: 0.2 }}
       >
         <div className="text-center text-white z-20 w-full h-full flex items-center justify-center">
           <div className="relative w-full h-full">
@@ -28,23 +44,23 @@ export function VideoBanner() {
                     <div className="absolute inset-0 rounded-full border-2 border-amber-400 animate-ping opacity-0"></div>
                   </div>
                 </motion.div>
-                
-                <motion.h1 
+
+                <motion.h1
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
                   className="text-4xl md:text-6xl font-light tracking-wider mb-4 font-serif"
                 >
-                  <span className="text-white">EXPERIENCE</span>{' '}
-                  <span 
+                  <span className="text-white">EXPERIENCE</span>{" "}
+                  <span
                     className="text-amber-400 relative inline-block"
-                    style={{ textShadow: '0 0 8px rgba(245, 158, 11, 0.5)' }}
+                    style={{ textShadow: "0 0 8px rgba(245, 158, 11, 0.5)" }}
                   >
                     LUXURY
                     <span className="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500"></span>
                   </span>
                 </motion.h1>
-                
+
                 <motion.p
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -53,7 +69,7 @@ export function VideoBanner() {
                 >
                   Premium transportation services for the most discerning clients
                 </motion.p>
-                
+
                 {/* Efecto de firma vintage */}
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -67,17 +83,21 @@ export function VideoBanner() {
                 </motion.div>
               </div>
             </div>
-            
+
             {/* Efecto de grano vintage */}
-            <div className="absolute inset-0 pointer-events-none" style={{
-              backgroundImage: "url('https://www.transparenttextures.com/patterns/noise-pattern-with-subtle-cross-lines.png')",
-              opacity: 0.03,
-              mixBlendMode: "overlay"
-            }}></div>
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                backgroundImage:
+                  "url('https://www.transparenttextures.com/patterns/noise-pattern-with-subtle-cross-lines.png')",
+                opacity: 0.03,
+                mixBlendMode: "overlay",
+              }}
+            ></div>
           </div>
         </div>
       </div>
-      
+
       {/* Efecto de borde vintage */}
       <div className="absolute inset-0 border-4 border-transparent hover:border-amber-400/30 transition-all duration-500 z-20 pointer-events-none"></div>
     </div>
