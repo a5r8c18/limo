@@ -27,8 +27,8 @@ export function Navigation({
           <div className="flex items-center mb-4 md:mb-0 group">
             <Sparkles className="h-6 w-6 text-amber-400 mr-2 group-hover:rotate-12 transition-transform" />
             <h1 className="text-3xl font-light tracking-widest uppercase">
-              <span className="text-amber-400">LUXURY</span>
-              <span className="text-white"> LIMOS</span>
+              <span className="text-amber-400">VQ</span>
+              <span className="text-white"> System</span>
             </h1>
           </div>
 
@@ -40,10 +40,18 @@ export function Navigation({
                 onHoverEnd={() => setIsHovered(null)}
                 className="relative"
               >
-                <Link to={item.id === "Our Fleet" ? "/fleet" : item.id.toLowerCase()}>
+                <Link
+                  to={
+                    item.id === "our-fleet"
+                      ? "/fleet"
+                      : item.id === "get-quote"
+                      ? "/quote"
+                      : `/${item.id.toLowerCase()}`
+                  }
+                >
                   <Button
                     variant="ghost"
-                    className={`rounded-none px-4 py-2 text-gray-300 hover:bg-transparent hover:text-amber-400 transition-all duration-300 ${
+                    className={`rounded-none px-4 py-2 text-gray-300 hover:bg-transparent hover:text-amber-400 transition-all duration-300 font-serif tracking-wider ${
                       isHovered === item.id ? "text-amber-400" : ""
                     }`}
                   >
@@ -67,7 +75,7 @@ export function Navigation({
               </motion.div>
             ))}
 
-            <Button className="ml-4 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-medium transition-all duration-300 shadow-lg hover:shadow-amber-500/30">
+            <Button className="ml-4 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-medium transition-all duration-300 shadow-lg hover:shadow-amber-500/30 font-serif tracking-wider">
               BOOK NOW
             </Button>
           </div>

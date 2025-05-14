@@ -26,6 +26,7 @@ export default function LimoRental() {
   const navItems = [
     { name: "Home", id: "home" },
     { name: "Our Fleet", id: "fleet" },
+    { name: "Get a Quote", id: "quote" },
     { name: "Services", id: "services" },
     { name: "Book Now", id: "booking" },
     { name: "Contact", id: "contact" },
